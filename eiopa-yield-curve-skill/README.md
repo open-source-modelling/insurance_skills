@@ -77,4 +77,4 @@ Pure stdlib `unittest`, no `pytest`, no network. Pins known rates and verifies e
 
 ## License / data source
 
-Underlying rates are published by [EIOPA](https://www.eiopa.europa.eu/) (European Insurance and Occupational Pensions Authority) under its Solvency II risk-free rate methodology. Check EIOPA's terms for redistribution of the underlying data before republishing this repo publicly. [Add your own license here for the code/skill wrapper itself.]
+Underlying rates are published by [EIOPA](https://www.eiopa.europa.eu/) (European Insurance and Occupational Pensions Authority) under its Solvency II risk-free rate methodology. Check EIOPA's terms for redistribution of the underlying data before republishing this repo publicly.
