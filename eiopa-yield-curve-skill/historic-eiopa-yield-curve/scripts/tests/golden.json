@@ -1,0 +1,149 @@
+{
+  "schema": 2,
+  "note": "Pinned facts for test_eiopa_curves.py. Regenerate only when a change has been reviewed and accepted.",
+  "currency_era_last": "2015-10-31",
+  "pinned_dates": [
+    "2014-12-31",
+    "2016-06-30",
+    "2018-11-30",
+    "2020-12-31",
+    "2024-12-31"
+  ],
+  "coverage": {
+    "releases": 140,
+    "first_release": "2014-12-31",
+    "last_release_when_pinned": "2026-07-31",
+    "snapshot_generated": "2026-09-02"
+  },
+  "spot_values": [
+    {
+      "country": "UK",
+      "term": 2,
+      "date": "2024-12-31",
+      "curve": "no_VA",
+      "rate": 0.04263
+    },
+    {
+      "country": "FR",
+      "term": 2,
+      "date": "2024-12-31",
+      "curve": "no_VA",
+      "rate": 0.02093
+    },
+    {
+      "country": "DE",
+      "term": 10,
+      "date": "2024-12-31",
+      "curve": "no_VA",
+      "rate": 0.02267
+    },
+    {
+      "country": "EU",
+      "term": 50,
+      "date": "2024-12-31",
+      "curve": "no_VA",
+      "rate": 0.02698
+    },
+    {
+      "country": "AU",
+      "term": 10,
+      "date": "2014-12-31",
+      "curve": "no_VA",
+      "rate": 0.02864
+    },
+    {
+      "country": "IT",
+      "term": 10,
+      "date": "2018-11-30",
+      "curve": "with_VA",
+      "rate": 0.01335
+    },
+    {
+      "country": "CH",
+      "term": 20,
+      "date": "2016-06-30",
+      "curve": "no_VA",
+      "rate": -0.00143
+    }
+  ],
+  "forward_roundtrip": [
+    [
+      "DE",
+      "2024-12-31",
+      30
+    ],
+    [
+      "UK",
+      "2020-12-31",
+      20
+    ],
+    [
+      "US",
+      "2018-11-30",
+      25
+    ]
+  ],
+  "va_exceptions": {
+    "GR": [
+      "2014-12-31",
+      "2015-01-31",
+      "2015-02-28",
+      "2015-03-31",
+      "2015-04-30",
+      "2015-05-31",
+      "2015-06-30",
+      "2015-07-31",
+      "2015-08-31",
+      "2015-09-30",
+      "2015-10-31",
+      "2015-11-30",
+      "2015-12-31",
+      "2016-01-31",
+      "2016-02-29",
+      "2016-03-31",
+      "2016-04-30",
+      "2016-05-31",
+      "2016-06-30",
+      "2016-07-31",
+      "2016-08-31"
+    ],
+    "IT": [
+      "2018-08-31",
+      "2018-10-31",
+      "2018-11-30"
+    ]
+  },
+  "coverage_changes": [
+    [
+      "2024-09-30",
+      [],
+      [
+        "RU"
+      ]
+    ],
+    [
+      "2025-01-31",
+      [],
+      [
+        "BR",
+        "CL",
+        "IN",
+        "KR",
+        "MX",
+        "MY",
+        "NZ",
+        "SG",
+        "TH",
+        "TR",
+        "ZA"
+      ]
+    ]
+  ],
+  "date_fingerprints": {
+    "2014-12-31": "94ea4373ca0e8ee23a59ee5b080146b2f2af0035389f4c7bf8c10e91cb660eaa",
+    "2016-06-30": "2ea7bc79d0682816a4d1422f825417b4b2d8ad10ec67a40bac0d6203f5e4c9e7",
+    "2018-11-30": "ff4f711caeae29ede7d1108e7c03b33c3cc06c94a2aaf9796baa94cb62c455ab",
+    "2020-12-31": "f8c3b344f6e43eae8b86c8f0ac871243eee5427d6cadc1ef07d17172b63d4d69",
+    "2024-12-31": "5f87b328a36d869ff149f31c9e2c485bf37734ccad803c94869adf0ad6584b2d"
+  }
+}
