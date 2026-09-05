@@ -155,10 +155,6 @@ has the table and how to run them.
 
 ## Notes and limitations
 
-- **Column names changed.** Earlier versions used `test_name`, `test_description`,
-  `test_process`, `test_result`. A workbook built against those will stop with a message
-  saying so. The old names are deliberately not accepted as aliases, and the skill will not
-  rename your headers to fix itself — the header is yours to change.
 - **Some setups have no file path.** When the workbook is reachable only through a connector,
   `check_run.py` does not apply and the skill falls back to recording sheet names and table
   dimensions by hand. The boundaries are unchanged; the verification is weaker.
