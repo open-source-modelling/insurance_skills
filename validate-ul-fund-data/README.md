@@ -7,8 +7,9 @@ your own file format and quality rules.
 
 ## Install the skill
 
-Use the packaged file, not the source folder:
+Use the packaged file, or give your AI assistant the root folder.
 
+Packaged file:
 ```text
 validate-ul-fund-data.skill
 ```
