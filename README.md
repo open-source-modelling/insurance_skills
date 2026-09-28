@@ -19,7 +19,10 @@
 | [historical-eiopa-yield-curve-skill]           | [git-hub-original]           | Answer any question about historic EIOPA risk-free rate (RFR) yield curves - a spot rate for a country and tenor at a reference date, a whole term structure, a tenor through time, countries side by side, implied forwards, discount factors, the Solvency II stressed curves, or curve parameters (UFR, LLP, alpha, CRA, VA). It carries the full published history with it - every monthly release since 2014-12-31, all curves, terms 1-150 years, no_VA and with_VA - so it needs no dataset, database, network. |
 | [spontaneous-testing-for-excel]           | Original           | Allows the user to describe tests in a table in plain English. The skill then uses Claude to perform the tests on the workbook. The skill documents the process and the final result of the test.|
 | [validate-ul-fund-data]           | Original           | Allows a user to drop a specific Excel data file and runs 22 different tests, validating the integrity and correctness of the workbook, Writes a separate report with results.|
+| [ranking_life_script]           | Original           | Allows a user to define a specific persona, a list of companies and a list of models. The script then ranks the list of companies from the point of view of the persona and specifies the reason why.|
 
+
+[ranking_life_script]:https://github.com/open-source-modelling/insurance_skills/tree/main/ranking_life_script
 [validate-ul-fund-data]:https://github.com/open-source-modelling/insurance_skills/tree/main/validate-ul-fund-data
 [spontaneous-testing-for-excel]:https://github.com/open-source-modelling/insurance_skills/tree/main/spontaneous-testing-for-excel
 
