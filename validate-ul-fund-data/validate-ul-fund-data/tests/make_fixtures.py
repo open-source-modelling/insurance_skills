@@ -17,8 +17,8 @@ Usage::
 from __future__ import annotations
 
 import datetime as dt
-import subprocess
-import sys
+import re
+import zipfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
@@ -206,19 +206,48 @@ def _birth_and_start(wb: Workbook, birth: dt.datetime, start: dt.datetime) -> No
 # --------------------------------------------------------------------------
 
 
-def _recalc(path: Path) -> None:
-    """Bake cached values into formula cells.
+EXCEL_EPOCH = dt.datetime(1899, 12, 30)  # serial 0; correct for dates after Feb 1900
+_DATE_FORMULA = re.compile(r"<f>DATE\((\d+),(\d+),(\d+)\)</f>(?:<v\s*/>|<v>[^<]*</v>)?")
 
-    openpyxl writes formulas with no cached result, so without this a formula
-    fixture would also fail the "is it a real date" rule — two defects instead
-    of the one it is meant to demonstrate.
+
+def _recalc(path: Path) -> None:
+    """Bake cached values into the =DATE(y,m,d) formula cells.
+
+    openpyxl writes formulas with no cached result, and the checks read cached
+    values, so without this a formula fixture would also fail the "is it a real
+    date" and "plausible birth date" rules — three defects instead of the one
+    it is meant to demonstrate. Excel stores each formula's result beside it;
+    this does the same for the only formula the fixtures use, so regenerating
+    needs no spreadsheet engine and gives the same file on any machine.
     """
-    script = Path("/mnt/skills/public/xlsx/scripts/recalc.py")
-    if not script.exists():
-        print(f"  ! recalc script unavailable; {path.name} will have empty formula cells")
-        return
-    subprocess.run([sys.executable, str(script), str(path)], check=False,
-                   capture_output=True)
+    def with_cached_value(match: re.Match) -> str:
+        year, month, day = map(int, match.groups())
+        serial = (dt.datetime(year, month, day) - EXCEL_EPOCH).days
+        return f"<f>DATE({year},{month},{day})</f><v>{serial}</v>"
+
+    with zipfile.ZipFile(path) as src:
+        entries = [(info, src.read(info)) for info in src.infolist()]
+
+    baked = 0
+    with zipfile.ZipFile(path, "w") as dst:
+        for info, data in entries:
+            if info.filename.startswith("xl/worksheets/"):
+                text, n = _DATE_FORMULA.subn(with_cached_value, data.decode("utf-8"))
+                data, baked = text.encode("utf-8"), baked + n
+            dst.writestr(info, data)
+
+    if not baked:
+        raise RuntimeError(f"{path.name}: no =DATE(...) formula cells to bake")
+
+
+def write_bad(fixture: Fixture) -> Path:
+    wb = build_clean()
+    fixture.mutate(wb)
+    path = BAD_DIR / fixture.filename
+    wb.save(path)
+    if fixture.needs_recalc:
+        _recalc(path)
+    return path
 
 
 def main() -> None:
@@ -230,12 +259,7 @@ def main() -> None:
     print(f"wrote {clean_path.relative_to(ROOT)}")
 
     for fixture in FIXTURES:
-        wb = build_clean()
-        fixture.mutate(wb)
-        path = BAD_DIR / fixture.filename
-        wb.save(path)
-        if fixture.needs_recalc:
-            _recalc(path)
+        path = write_bad(fixture)
         print(f"wrote {path.relative_to(ROOT)}  [{fixture.rule}] {fixture.note}")
 
 
