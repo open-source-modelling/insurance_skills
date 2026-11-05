@@ -11,6 +11,10 @@
   Collection of useful AI skills that actuaries can use to speed up their tasks. 
 </p>
 
+<p align="center">
+  <a href="https://github.com/open-source-modelling/insurance_skills/actions/workflows/tests.yml"><img src="https://github.com/open-source-modelling/insurance_skills/actions/workflows/tests.yml/badge.svg?branch=main" alt="tests"></a>
+</p>
+
 
 ## Skills available
 

@@ -1,0 +1,6 @@
+# Packages needed to run the validate-ul-fund-data tests (used by CI).
+# Run from validate-ul-fund-data/validate-ul-fund-data:
+#   pip install -r ../requirements-dev.txt
+#   python -m pytest tests -q
+pytest==9.1.1
+openpyxl==3.1.5

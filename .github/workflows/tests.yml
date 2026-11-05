@@ -1,0 +1,70 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:        # adds a "Run workflow" button on the Actions tab
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # A new push to a pull request cancels its older run; every commit on main is tested.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+# One job per skill, so a red check names the skill that broke.
+jobs:
+  eiopa-yield-curve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: eiopa-yield-curve-skill/historic-eiopa-yield-curve/scripts/tests
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - name: Run tests (standard library only)
+        run: python test_eiopa_curves.py -v
+
+  ranking-life-script:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: ranking_life_script
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      # Offline tests only. The script itself calls paid LLM APIs and is never run here.
+      - name: Run tests (standard library only)
+        run: python -m unittest discover tests -v
+
+  validate-ul-fund-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: validate-ul-fund-data/validate-ul-fund-data
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: validate-ul-fund-data/requirements-dev.txt
+      - name: Install test dependencies
+        run: python -m pip install -r ../requirements-dev.txt
+      - name: Run tests
+        run: python -m pytest tests -v
