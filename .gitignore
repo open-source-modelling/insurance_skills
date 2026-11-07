@@ -1,2 +1,5 @@
 # pytest cache, created in whichever folder the tests are run from
 .pytest_cache/
+
+# Python bytecode, created whenever a script or test is run
+__pycache__/

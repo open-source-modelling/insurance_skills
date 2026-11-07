@@ -74,7 +74,7 @@ The Bash examples below assume they are run from this repository's top-level
 directory. On Windows, use `py -3` wherever the examples say `python3`.
 
 ```bash
-cd validate-ul-fund-data-source/validate-ul-fund-data
+cd validate-ul-fund-data/validate-ul-fund-data
 python3 -m scripts.ul_fund_checks.cli --json export.xlsx
 ```
 
@@ -83,7 +83,7 @@ rules failed. Use `scripts/validate.py` when an analyst-facing Excel report is
 needed:
 
 ```bash
-cd validate-ul-fund-data-source/validate-ul-fund-data
+cd validate-ul-fund-data/validate-ul-fund-data
 python3 scripts/validate.py export.xlsx --out export_validation.xlsx
 ```
 
@@ -94,7 +94,7 @@ or day-to-day use. When changing the contract, add a fixture that violates the
 new rule and run:
 
 ```bash
-cd validate-ul-fund-data-source/validate-ul-fund-data
+cd validate-ul-fund-data/validate-ul-fund-data
 python3 tests/make_fixtures.py
 python3 tests/show_failures.py
 python3 -m pytest tests/ -q

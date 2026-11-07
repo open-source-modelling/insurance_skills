@@ -1,39 +1,45 @@
 <div align="center">
-<h1 align="center" style="border-botom: none">
+<h1 align="center" style="border-bottom: none">
   <b>
-    🐍 Actuarial skills 🐍     
+    🐍 Actuarial skills 🐍
   </b>
 </h1>
-
-</br>
+</div>
 
 <p align="center">
-  Collection of useful AI skills that actuaries can use to speed up their tasks. 
+  Claude skills that speed up actuarial work, and studies of what AI models tell insurance customers.
 </p>
 
 <p align="center">
   <a href="https://github.com/open-source-modelling/insurance_skills/actions/workflows/tests.yml"><img src="https://github.com/open-source-modelling/insurance_skills/actions/workflows/tests.yml/badge.svg?branch=main" alt="tests"></a>
 </p>
 
+## Claude skills
 
-## Skills available
+A skill is a folder of instructions and scripts that Claude reads when a task calls for it. Each skill's README explains how to install it.
 
-| Skill                   | Source                              | Description                                                                   |
-| -------------------------| ----------------------------------- | ----------------------------------------------------------------------------- |
-| [historical-eiopa-yield-curve-skill]           | [git-hub-original]           | Answer any question about historic EIOPA risk-free rate (RFR) yield curves - a spot rate for a country and tenor at a reference date, a whole term structure, a tenor through time, countries side by side, implied forwards, discount factors, the Solvency II stressed curves, or curve parameters (UFR, LLP, alpha, CRA, VA). It carries the full published history with it - every monthly release since 2014-12-31, all curves, terms 1-150 years, no_VA and with_VA - so it needs no dataset, database, network. |
-| [spontaneous-testing-for-excel]           | Original           | Allows the user to describe tests in a table in plain English. The skill then uses Claude to perform the tests on the workbook. The skill documents the process and the final result of the test.|
-| [validate-ul-fund-data]           | Original           | Allows a user to drop a specific Excel data file and runs 22 different tests, validating the integrity and correctness of the workbook, Writes a separate report with results.|
-| [ranking_life_script]           | Original           | Allows a user to define a specific persona, a list of companies and a list of models. The script then ranks the list of companies from the point of view of the persona and specifies the reason why.|
+| Skill | Source | What it does |
+|---|---|---|
+| [historic-eiopa-yield-curve] | Built on [EIOPA_all_curves] | Answers questions about historic EIOPA risk-free rate curves: a spot rate, a whole term structure, a tenor over time, countries side by side, forwards, discount factors, the Solvency II stressed curves and curve parameters (UFR, LLP, alpha, CRA, VA). It carries every monthly release since December 2014, so it needs no network, database or extra package. |
+| [spontaneous-testing-for-excel] | Original | Runs tests written in plain English in a table on a workbook's `TEST` sheet, and writes the evidence and a verdict for each test back into the workbook. |
+| [validate-ul-fund-data] | Original | Runs 22 checks on a quarterly unit-linked fund Excel extract before anyone analyses it, and writes the results to a separate report workbook. |
 
+## LLM studies
 
-[ranking_life_script]:https://github.com/open-source-modelling/insurance_skills/tree/main/ranking_life_script
-[validate-ul-fund-data]:https://github.com/open-source-modelling/insurance_skills/tree/main/validate-ul-fund-data
-[spontaneous-testing-for-excel]:https://github.com/open-source-modelling/insurance_skills/tree/main/spontaneous-testing-for-excel
+Scripts that put the same customer question to several AI models (Claude, GPT and Gemini) through their APIs and turn the answers into tables that can be compared. They call paid APIs, so you need your own API keys. Both are in [`llm-rankings/`](llm-rankings/).
 
-[historical-eiopa-yield-curve-skill]:https://github.com/open-source-modelling/insurance_skills/tree/main/eiopa-yield-curve-skill
-[git-hub-original]:https://github.com/open-source-modelling/EIOPA_all_curves
+| Study | What it measures |
+|---|---|
+| [italy-life] | How each model ranks Italian life insurers for a given customer, and the reason it gives for each company. |
+| [australia-super] | How well each model ranks Australian super funds by fees for a given member, compared with the fees the funds actually charge. |
 
+## Contributing
 
-<b> New suggestions for skills are welcome. </b>
+Suggestions for new skills and studies are welcome. Queries and suggestions: gregor@osmodelling.com
 
-Queries and suggestions; gregor@osmodelling.com
+[historic-eiopa-yield-curve]: historic-eiopa-yield-curve/
+[EIOPA_all_curves]: https://github.com/open-source-modelling/EIOPA_all_curves
+[spontaneous-testing-for-excel]: spontaneous-testing-for-excel/
+[validate-ul-fund-data]: validate-ul-fund-data/
+[italy-life]: llm-rankings/italy-life/
+[australia-super]: llm-rankings/australia-super/

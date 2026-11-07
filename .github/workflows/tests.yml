@@ -16,12 +16,12 @@ concurrency:
 
 # One job per skill, so a red check names the skill that broke.
 jobs:
-  eiopa-yield-curve:
+  historic-eiopa-yield-curve:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     defaults:
       run:
-        working-directory: eiopa-yield-curve-skill/historic-eiopa-yield-curve/scripts/tests
+        working-directory: historic-eiopa-yield-curve/historic-eiopa-yield-curve/scripts/tests
     steps:
       - uses: actions/checkout@v7
         with:
@@ -32,12 +32,12 @@ jobs:
       - name: Run tests (standard library only)
         run: python test_eiopa_curves.py -v
 
-  ranking-life-script:
+  llm-rankings-italy-life:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     defaults:
       run:
-        working-directory: ranking_life_script
+        working-directory: llm-rankings/italy-life
     steps:
       - uses: actions/checkout@v7
         with:
@@ -47,6 +47,26 @@ jobs:
           python-version: "3.13"
       # Offline tests only. The script itself calls paid LLM APIs and is never run here.
       - name: Run tests (standard library only)
+        run: python -m unittest discover tests -v
+
+  llm-rankings-australia-super:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: llm-rankings/australia-super
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      # Offline tests only. The script itself calls paid LLM APIs and is never run here,
+      # so the provider SDKs are not installed.
+      - name: Install test dependencies
+        run: python -m pip install pandas
+      - name: Run tests
         run: python -m unittest discover tests -v
 
   validate-ul-fund-data:
