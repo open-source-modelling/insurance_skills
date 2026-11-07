@@ -1,0 +1,5 @@
+﻿ranking,actual,claude-sonnet-5,gpt-5.6-terra,gemini-3.1-pro-preview
+actual,1.0,0.27,0.46,0.34
+claude-sonnet-5,0.27,1.0,0.72,0.79
+gpt-5.6-terra,0.46,0.72,1.0,0.76
+gemini-3.1-pro-preview,0.34,0.79,0.76,1.0

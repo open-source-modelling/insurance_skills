@@ -1,0 +1,4 @@
+﻿model,rank_corr,median_abs_pct_err_total,median_abs_pct_err_admin,median_abs_pct_err_invest,median_abs_pct_err_trans,funds_ranked_per_run,total_mismatches_per_run
+claude-sonnet-5,0.17,26.85,38.9,39.5,57.1,29.6,0.0
+gemini-3.1-pro-preview,0.28,29.6,36.8,26.65,66.7,30.0,0.0
+gpt-5.6-terra,0.36,18.7,22.2,24.7,44.4,30.0,0.0

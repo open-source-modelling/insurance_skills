@@ -1,0 +1,4 @@
+anthropic
+openai
+google-genai
+pandas
